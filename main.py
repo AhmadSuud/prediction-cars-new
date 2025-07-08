@@ -57,6 +57,13 @@ default_fuel = default_row['Fuel_simple']
 default_trans = default_row['Transmission_simple']
 default_price = int(default_row['Price'])
 
+# Estimasi km awal tahun 2025 jika memungkinkan
+if default_row["Simulation_Kilometer"] > 0 and default_row["Vehicle_Age"] > 0:
+    km_per_year = default_row["Simulation_Kilometer"] / default_row["Vehicle_Age"]
+    default_kilometer = int(km_per_year * (2025 - default_year))
+else:
+    default_kilometer = 0
+
 # Pilihan lain
 fuel_options = sorted(df['Fuel_simple'].dropna().unique())
 trans_options = sorted(df['Transmission_simple'].dropna().unique())
@@ -64,9 +71,10 @@ year_options = sorted(df['Year'].dropna().unique())
 
 # Input
 year = st.sidebar.selectbox("📆 Tahun Produksi", options=year_options, index=year_options.index(default_year))
-kilometer_str = st.sidebar.text_input("🛣️ Kilometer Saat Ini", value="0")
+
+kilometer_str = st.sidebar.text_input("🛣️ Kilometer Saat Ini (tahun 2025)", value=f"{default_kilometer:,}".replace(",", "."))
 kilometer_cleaned = kilometer_str.replace(".", "").replace(",", "").strip()
-kilometer = int(kilometer_cleaned) if kilometer_cleaned.isdigit() else 0
+kilometer = int(kilometer_cleaned) if kilometer_cleaned.isdigit() else default_kilometer
 
 fuel = st.sidebar.selectbox("⛽ Tipe Bahan Bakar", options=fuel_options, index=fuel_options.index(default_fuel))
 transmission = st.sidebar.selectbox("⚙️ Transmisi", options=trans_options, index=trans_options.index(default_trans))
@@ -88,7 +96,7 @@ if prediksi_button:
     predictions = []
 
     for year_sim in simulation_years:
-        usia = year_sim - 2025  # prediksi dari 2025
+        usia = year_sim - 2025  # Usia mobil dihitung dari tahun 2025
         km_sim = kilometer + (usia * 5777) if usia >= 0 else kilometer
 
         input_row = pd.DataFrame([{
