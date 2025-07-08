@@ -1,0 +1,16 @@
+# Abaikan environment
+env/
+venv/
+
+# Abaikan Python cache
+__pycache__/
+*.pyc
+
+# Abaikan Jupyter checkpoint
+.ipynb_checkpoints/
+
+# Abaikan file besar sementara (opsional)
+*.zip
+*.tar.gz
+*.log
+
