@@ -22,11 +22,11 @@ st.set_page_config(page_title="Prediksi Harga Mobil Bekas", layout="wide")
 st.title("🚘 Prediksi Harga Mobil Bekas")
 st.caption("Prediksi harga hingga 20 tahun ke depan dimulai dari tahun 2026")
 
-st.info("""
+st.info(""" 
 ℹ️ **Catatan Penting**:
-- Semua prediksi dimulai dari tahun **2025** sebagai tahun awal mobil bekas.
-- Artinya, **Harga Saat Ini**, **Usia Mobil**, dan **Kilometer** dihitung mulai dari tahun 2025.
-- Prediksi dilakukan selama 20 tahun ke depan hingga tahun 2045.
+- Semua data yang digunakan, termasuk harga, spesifikasi, dan informasi kendaraan, diperoleh dari situs [oto.com](https://www.oto.com/) melalui proses *web scraping*.
+- Prediksi dilakukan selama 20 tahun ke depan, dimulai dari tahun **2026** hingga **2045**.
+- **Harga Saat Ini**, **Usia Mobil**, dan **Kilometer** dihitung berdasarkan acuan tahun **2025**.
 """)
 
 with st.spinner("🔄 Memuat model dan data..."):
