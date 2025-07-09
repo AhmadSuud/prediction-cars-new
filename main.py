@@ -18,7 +18,7 @@ def load_data_file():
 # ===============================
 # Setup Halaman
 # ===============================
-st.set_page_config( page_title="Prediksi Harga Mobil Bekas", page_icon="🚘",  # layout="wide")
+st.set_page_config(page_title="Prediksi Harga Mobil Bekas", layout="wide")
 st.title("🚘 Prediksi Harga Mobil Bekas")
 st.caption("Prediksi harga hingga 20 tahun ke depan dimulai dari tahun 2026")
 
